@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <item-->
+<!--        android:id="@+id/button_refresh_action_bar"-->
+<!--        android:icon="@drawable/refresh_button"-->
+<!--        android:title="Refresh"-->
+<!--        app:showAsAction="always"/>-->
+
+    <item
+        android:id="@+id/navigationFragmentCurrentWeather"
+        android:icon="@drawable/refresh_button"
+        android:title="Current Weather"
+        />
+    <item
+        android:id="@+id/navigationFragmentForecastFiveDays"
+        android:icon="@drawable/refresh_button"
+        android:title="5-day Forecast"
+        />
+
+
+</menu>

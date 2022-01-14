@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/navigationFragmentCurrentWeather">
+
+
+    <fragment
+        android:id="@+id/navigationFragmentCurrentWeather"
+        android:name="com.alex_kind.weatherappwithgps.NavigationFragmentCurrentWeather"
+        android:label="navigation_fragment_current_weather_fragment"
+        tools:layout="@layout/navigation_fragment_current_weather_fragment"
+        />
+    <fragment
+        android:id="@+id/navigationFragmentForecastFiveDays"
+        android:name="com.alex_kind.weatherappwithgps.NavigationFragmentForecastFiveDays"
+        android:label="navigation_fragment_forecast_five_days_fragment"
+        tools:layout="@layout/navigation_fragment_forecast_five_days_fragment"
+        />
+</navigation>
