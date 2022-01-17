@@ -1,4 +1,4 @@
-package com.alex_kind.weatherappwithgps
+package com.alex_kind.weatherappwithgps.ui.forecastFragment
 
 import androidx.lifecycle.ViewModel
 

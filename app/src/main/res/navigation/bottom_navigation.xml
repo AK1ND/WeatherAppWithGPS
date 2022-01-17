@@ -8,13 +8,13 @@
 
     <fragment
         android:id="@+id/navigationFragmentCurrentWeather"
-        android:name="com.alex_kind.weatherappwithgps.NavigationFragmentCurrentWeather"
+        android:name="com.alex_kind.weatherappwithgps.ui.currentWeatherFragment.NavigationFragmentCurrentWeather"
         android:label="navigation_fragment_current_weather_fragment"
         tools:layout="@layout/navigation_fragment_current_weather_fragment"
         />
     <fragment
         android:id="@+id/navigationFragmentForecastFiveDays"
-        android:name="com.alex_kind.weatherappwithgps.NavigationFragmentForecastFiveDays"
+        android:name="com.alex_kind.weatherappwithgps.ui.forecastFragment.NavigationFragmentForecastFiveDays"
         android:label="navigation_fragment_forecast_five_days_fragment"
         tools:layout="@layout/navigation_fragment_forecast_five_days_fragment"
         />

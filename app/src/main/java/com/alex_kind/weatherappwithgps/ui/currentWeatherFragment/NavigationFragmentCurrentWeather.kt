@@ -1,4 +1,4 @@
-package com.alex_kind.weatherappwithgps
+package com.alex_kind.weatherappwithgps.ui.currentWeatherFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,10 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.alex_kind.weatherappwithgps.DataModel
+import com.alex_kind.weatherappwithgps.RetrofitCreator
 import com.alex_kind.weatherappwithgps.databinding.NavigationFragmentCurrentWeatherFragmentBinding
-import com.alex_kind.weatherappwithgps.model.City
 import kotlinx.coroutines.*
 import retrofit2.awaitResponse
 
@@ -87,7 +87,10 @@ class NavigationFragmentCurrentWeather : Fragment() {
                     bind?.tvTemp?.text = data.list[0].main.temp.toString() + "°C"
                     bind?.tvDescription?.text = data.list[0].weather[0].description
                     val windSpeed = data.list[0].wind.speed
-                    bind?.tvWind?.text = windSpeed.toString() + " m/s" + "\n(${windSpeed*3.6} km/h)"
+                    val windSpeedInKM = data.list[0].wind.speed * 3.6
+                    bind?.tvWind?.text = windSpeed.toString() + " m/s" + "\n(" +
+                            String.format("%.2f", windSpeedInKM) + " km/h)"
+//                    "\n(${windSpeed*3.6} km/h)"
                     bind?.tvHumidity?.text = data.list[0].main.humidity.toString() + "%"
 //                }
                 }
