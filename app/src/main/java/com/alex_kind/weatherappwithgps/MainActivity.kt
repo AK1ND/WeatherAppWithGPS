@@ -17,11 +17,16 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.alex_kind.weatherappwithgps.databinding.ActivityMainBinding
+import com.alex_kind.weatherappwithgps.ui.currentWeatherFragment.NavigationFragmentCurrentWeatherViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import retrofit2.awaitResponse
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +37,9 @@ class MainActivity : AppCompatActivity() {
 
     private var PERMISSION_ID = 1000
 
-    private val dataModel: DataModel by viewModels()
+//    private val dataModel: DataModel by viewModels()
+    private val dataModelCurrentVM: NavigationFragmentCurrentWeatherViewModel by viewModels()
+    var retrofitBuilder = RetrofitCreator().getRetrofit()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,9 +91,44 @@ class MainActivity : AppCompatActivity() {
                         bind.tvCityName.text = "$city, $country"
 
                         //send CityName to observer for i can take it from fragment
-                        dataModel.cityName.value = getCityName(location.latitude, location.longitude)
+//                        dataModel.cityName.value =
+//                            getCityName(location.latitude, location.longitude)
+                        dataModelCurrentVM.cityName.value =
+                            getCityName(location.latitude, location.longitude)
 
 
+                        //RESPONSE
+                        GlobalScope.launch(Dispatchers.Main) {
+                            try {
+                                val response = retrofitBuilder.weather(
+                                    city,
+                                    "6e298e72d16587b721abb30bbf7c721a",
+                                    "metric"
+                                ).awaitResponse()
+                                if (response.isSuccessful) {
+                                    val data = response.body()!!
+                                    Log.d("CW", "Response is successful")
+                                    dataModelCurrentVM.temp.value =
+                                        data.list[0].main.temp.toString() + "°C"
+                                    dataModelCurrentVM.description.value =
+                                        data.list[0].weather[0].description
+                                    val windSpeed = data.list[0].wind.speed
+                                    val windSpeedInKM = data.list[0].wind.speed * 3.6
+                                    dataModelCurrentVM.wind.value =
+                                        windSpeed.toString() + " m/s" + "\n(" +
+                                                String.format("%.2f", windSpeedInKM) + " km/h)"
+                                    dataModelCurrentVM.humidity.value =
+                                        data.list[0].main.humidity.toString() + "%"
+                                    dataModelCurrentVM.iconID.value = data.list[0].weather[0].icon
+                                }
+                            } catch (e: Exception) {
+                                Log.d("error response", "ERROR RESPONSE")
+                                Toast.makeText(
+                                    this@MainActivity,
+                                    "ERROR CONNECTION TO API", Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
                     }
                 }
             } else {
@@ -132,7 +174,6 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
-//                android.Manifest.permission.ACCESS_FINE_LOCATION   it's equals?
             )
             == PackageManager.PERMISSION_GRANTED ||
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)

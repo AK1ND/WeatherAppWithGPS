@@ -1,6 +1,5 @@
 package com.alex_kind.weatherappwithgps
 
-import com.alex_kind.weatherappwithgps.model.Model
 import com.alex_kind.weatherappwithgps.model.ModelList
 import retrofit2.Call
 import retrofit2.http.GET

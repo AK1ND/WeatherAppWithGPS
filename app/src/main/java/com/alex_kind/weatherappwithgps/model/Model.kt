@@ -1,6 +1,6 @@
 package com.alex_kind.weatherappwithgps.model
 
- data class Model(
+data class Model(
     val clouds: Clouds,
     val dt: Int,
     val dt_txt: String,

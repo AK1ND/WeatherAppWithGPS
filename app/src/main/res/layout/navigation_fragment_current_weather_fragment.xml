@@ -19,23 +19,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/icon_weather_current"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@id/tv_current_weather"
+        app:layout_constraintStart_toStartOf="@id/tv_current_weather"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_weather"
+        tools:src="@tools:sample/avatars" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/temp_description_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="@id/tv_current_weather"
-        app:layout_constraintStart_toStartOf="@id/tv_current_weather"
-        app:layout_constraintTop_toBottomOf="@id/tv_current_weather">
+        app:layout_constraintEnd_toEndOf="@id/icon_weather_current"
+        app:layout_constraintStart_toStartOf="@id/icon_weather_current"
+        app:layout_constraintTop_toBottomOf="@id/icon_weather_current">
 
         <View
             android:id="@+id/string_separate_temp_and_description"
             android:layout_width="2dp"
             android:layout_height="28dp"
-            android:background="#435CDA"
             android:layout_marginEnd="40dp"
+            android:background="#435CDA"
 
             app:layout_constraintBottom_toBottomOf="@id/temp_description_toolbar"
             app:layout_constraintLeft_toLeftOf="@+id/temp_description_toolbar"
@@ -83,23 +92,23 @@
             android:id="@+id/string_separate_wind_and_imageView"
             android:layout_width="2dp"
             android:layout_height="28dp"
-            android:background="#435CDA"
             android:layout_marginEnd="40dp"
+            android:background="#435CDA"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/wind_toolbar"
             app:layout_constraintLeft_toLeftOf="@+id/wind_toolbar"
             app:layout_constraintRight_toRightOf="@id/wind_toolbar"
-            app:layout_constraintTop_toTopOf="@id/wind_toolbar"
-            android:visibility="invisible"/>
+            app:layout_constraintTop_toTopOf="@id/wind_toolbar" />
 
         <ImageView
             android:id="@+id/wind_imageView"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/wind"
             app:layout_constraintBottom_toBottomOf="@id/wind_toolbar"
             app:layout_constraintEnd_toStartOf="@id/string_separate_wind_and_imageView"
-            app:layout_constraintTop_toTopOf="@id/wind_toolbar"
-            android:background="@drawable/wind"/>
+            app:layout_constraintTop_toTopOf="@id/wind_toolbar" />
 
         <TextView
             android:id="@+id/tv_wind"
@@ -111,8 +120,7 @@
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="@id/wind_toolbar"
             app:layout_constraintStart_toEndOf="@id/string_separate_wind_and_imageView"
-            app:layout_constraintTop_toTopOf="@id/wind_toolbar"
-            />
+            app:layout_constraintTop_toTopOf="@id/wind_toolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,23 +139,23 @@
             android:id="@+id/string_separate_humidity_and_imageView"
             android:layout_width="2dp"
             android:layout_height="28dp"
-            android:background="#435CDA"
             android:layout_marginEnd="40dp"
+            android:background="#435CDA"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@id/humidity_toolbar"
             app:layout_constraintLeft_toLeftOf="@+id/humidity_toolbar"
             app:layout_constraintRight_toRightOf="@id/humidity_toolbar"
-            app:layout_constraintTop_toTopOf="@id/humidity_toolbar"
-            android:visibility="invisible"/>
+            app:layout_constraintTop_toTopOf="@id/humidity_toolbar" />
 
         <ImageView
             android:id="@+id/humidity_imageView"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/humidity"
             app:layout_constraintBottom_toBottomOf="@id/humidity_toolbar"
             app:layout_constraintEnd_toStartOf="@id/string_separate_humidity_and_imageView"
-            app:layout_constraintTop_toTopOf="@id/humidity_toolbar"
-            android:background="@drawable/humidity"/>
+            app:layout_constraintTop_toTopOf="@id/humidity_toolbar" />
 
         <TextView
             android:id="@+id/tv_humidity"
@@ -159,10 +167,18 @@
             android:textSize="28sp"
             app:layout_constraintBottom_toBottomOf="@id/humidity_toolbar"
             app:layout_constraintStart_toEndOf="@id/string_separate_humidity_and_imageView"
-            app:layout_constraintTop_toTopOf="@id/humidity_toolbar"
-            />
+            app:layout_constraintTop_toTopOf="@id/humidity_toolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/button_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SHARE"
+        app:layout_constraintEnd_toEndOf="@id/humidity_toolbar"
+        app:layout_constraintStart_toStartOf="@id/humidity_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/humidity_toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

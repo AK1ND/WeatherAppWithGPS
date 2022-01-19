@@ -46,8 +46,8 @@
             android:layout_gravity="center"
             android:text="Mountain View"
             android:textColor="@color/black"
-            android:textStyle="italic|bold"
-            android:textSize="20sp">
+            android:textSize="20sp"
+            android:textStyle="italic|bold">
 
         </TextView>
 
@@ -61,22 +61,23 @@
         </ImageButton>
 
     </androidx.appcompat.widget.Toolbar>
+
     <View
         android:id="@+id/string"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="@drawable/gradient_list"
 
-        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 
     <!--    <Button-->
-<!--        android:id="@+id/button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Button"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/tvLocation"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--        android:id="@+id/button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Button"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/tvLocation"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
