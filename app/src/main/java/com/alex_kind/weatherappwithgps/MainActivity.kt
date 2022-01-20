@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.drawable.AnimationDrawable
+import android.location.Address
 import android.location.Geocoder
 import android.location.LocationManager
 import android.os.Bundle
@@ -37,7 +38,9 @@ class MainActivity : AppCompatActivity() {
 
     private var PERMISSION_ID = 1000
 
-//    private val dataModel: DataModel by viewModels()
+    private lateinit var geocoder: Geocoder
+
+    //    private val dataModel: DataModel by viewModels()
     private val dataModelCurrentVM: NavigationFragmentCurrentWeatherViewModel by viewModels()
     var retrofitBuilder = RetrofitCreator().getRetrofit()
 
@@ -51,13 +54,13 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
 
-
-        animation()
-
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
+        geocoder = Geocoder(this, Locale.getDefault())
 
+
+        animation()
+        hideAndShowBottomNav()
         getLastLocation()
 
         bind.buttonRefreshToolbar.setOnClickListener {
@@ -74,6 +77,22 @@ class MainActivity : AppCompatActivity() {
         animationDrawable.setExitFadeDuration(4000)
         animationDrawable.start()
     }
+
+    private fun hideAndShowBottomNav() {
+        bind.hideBottomNavView.setOnClickListener {
+            bind.bottomNavView.visibility = View.GONE
+            bind.hideBottomNavView.visibility = View.GONE
+            bind.showBottomNavView.visibility = View.VISIBLE
+        }
+
+        bind.showBottomNavView.setOnClickListener {
+            bind.bottomNavView.visibility = View.VISIBLE
+            bind.hideBottomNavView.visibility = View.VISIBLE
+            bind.showBottomNavView.visibility = View.GONE
+        }
+    }
+
+
 
 
     private fun getLastLocation() {
@@ -140,7 +159,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getNewLocation() {
-        locationRequest = com.google.android.gms.location.LocationRequest.create() //???
+        locationRequest = com.google.android.gms.location.LocationRequest.create()
         locationRequest.priority =
             com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 0
@@ -156,6 +175,7 @@ class MainActivity : AppCompatActivity() {
         ) {
             return
         }
+
         Looper.myLooper()?.let {
             fusedLocationProviderClient.requestLocationUpdates(
                 locationRequest, locationCallBack, it

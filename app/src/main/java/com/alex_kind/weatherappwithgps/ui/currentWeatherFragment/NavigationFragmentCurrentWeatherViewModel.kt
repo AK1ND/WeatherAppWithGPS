@@ -16,18 +16,6 @@ class NavigationFragmentCurrentWeatherViewModel : ViewModel() {
     val cityName: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
-//    val temp: MutableLiveData<String> by lazy {
-//        MutableLiveData<String>()
-//    }
-//    val description: MutableLiveData<String> by lazy {
-//        MutableLiveData<String>()
-//    }
-//    val wind: MutableLiveData<String> by lazy {
-//        MutableLiveData<String>()
-//    }
-//    val humidity: MutableLiveData<String> by lazy {
-//        MutableLiveData<String>()
-//    }
 
     val temp = MutableLiveData<String>()
     val description = MutableLiveData<String>()
