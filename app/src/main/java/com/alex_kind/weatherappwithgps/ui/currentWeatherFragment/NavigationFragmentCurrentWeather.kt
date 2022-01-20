@@ -91,6 +91,7 @@ class NavigationFragmentCurrentWeather : Fragment() {
                             bind?.tvTemp?.text + "\n" +
                             bind?.tvDescription?.text
                 )
+                intent.type = "text/plain"
                 startActivity(Intent.createChooser(intent, "Share to:"))
             }
 
